@@ -1,72 +1,66 @@
 return {
 
   'glepnir/dashboard-nvim',
+  dependencies = { {'nvim-tree/nvim-web-devicons'}},
   config = function()
     local db = require("dashboard")
 
     db.setup {
-      theme = 'doom',
+      theme = 'hyper',
       config = {
-          week_header = {
-            enable = true
+        week_header = {
+          enable = true,
+          concat = 'Do one thing, and do it well. - "Doug McIlroy"',
+        },
+        shortcut = {
+          { desc = '󰊳 Update',
+            group = '@property',
+            action = 'Lazy update',
+            key = 'u'
+            },
+          {
+            icon = ' ',
+            icon_hl = '@variable',
+            desc = 'Files',
+            group = 'Label',
+            action = 'Telescope find_files',
+            key = 'f',
           },
-          center = {
-              {
-                  icon = ' ',
-                  icon_hl = '@variable',
-                  desc = 'Find File',
-                  desc_hl = 'String',
-                  key = 'f',
-                  keymap = 'SPC ff',
-                  key_hl = 'Number',
-                  action = 'Telescope find_files'
-              },
-              {
-                  icon = ' ',
-                  icon_hl = '@variable',
-                  desc = 'File Browser',
-                  desc_hl = 'String',
-                  key = 'd',
-                  keymap = 'SPC ed',
-                  key_hl = 'Number',
-                  action = 'Ex'
-              },
-              {
-                  icon = '󰚰 ',
-                  icon_hl = '@variable',
-                  desc = 'Update',
-                  desc_hl = 'String',
-                  key = 'u',
-                  keymap = ':PackerUpdate',
-                  key_hl = 'Number',
-                  action = 'PackerUpdate'
-              },
-              {
-                  icon = ' ',
-                  icon_hl = '@variable',
-                  desc = 'Transparency Toggle',
-                  desc_hl = 'String',
-                  key = 't',
-                  keymap = 'SPC tt',
-                  key_hl = 'Number',
-                  action = 'TransparentToggle'
-              },
-              {
-                  icon = '󱓥 ',
-                  icon_hl = '@variable',
-                  desc = 'Edit Neovim',
-                  desc_hl = 'String',
-                  key = 'e',
-                  keymap = 'SPC en',
-                  key_hl = 'Number',
-                  action = 'lua edit_nvim()' -- Declared in functions.lua
-              },
+          {
+            desc = ' Apps',
+            group = 'DiagnosticHint',
+            action = 'Telescope app',
+            key = 'a',
+          },
+          {
+            desc = ' dotfiles',
+            group = 'Number',
+            action = 'Telescope dotfiles',
+            key = 'd',
+          },
+        },
 
-          },
-          footer = {
-            "Do one thing, and do it well. - 'Doug McIlroy'"
-          }
-      }
-  }
+      packages = {
+          enable = true
+        }, -- show how many plugins neovim loaded
+      -- limit how many projects list, action when you press key or enter it will run this action.
+      -- action can be a functino type, e.g.
+      -- action = func(path) vim.cmd('Telescope find_files cwd=' .. path) end
+      project = {
+          enable = true,
+          limit = 8,
+          icon = 'your icon',
+          label = '',
+          action = 'Telescope find_files cwd='
+        },
+      mru = {
+          limit = 10,
+          icon = 'your icon',
+          label = '',
+        },
+      footer = {}, -- footer
+        }
+    }
+
 end,
 }
