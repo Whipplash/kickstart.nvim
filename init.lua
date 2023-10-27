@@ -43,6 +43,8 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- My custom keymaps - moving to a location is TBD
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -220,49 +222,42 @@ require('lazy').setup({
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   { import = 'custom.plugins' },
 }, {})
-
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
--- Set highlight on search
-vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
-
--- Enable mouse mode
-vim.o.mouse = 'a'
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
-
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
+vim.o.hlsearch = false -- Set highlight on search
+vim.wo.number = true -- Make line numbers default
+vim.o.relativenumber = true -- Relative line numbering
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
+-- vim.o.breakindent = true -- Enable break indent
+vim.o.smartindent = true
+vim.o.cursorline = true
+vim.o.mouse = 'a' -- Enable mouse mode
+vim.o.foldlevelstart = 20
+vim.o.guicursor = ''
+vim.o.scrolloff = 10
+vim.o.colorcolumn = '120'
+vim.wo.signcolumn = 'yes' -- Keep signcolumn on by default
+vim.o.wrap = false
+vim.o.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
+vim.o.undofile = true -- Save undo history
+vim.o.ignorecase = true -- Case-insensitive searching UNLESS \C or capital in search
 vim.o.smartcase = true
-
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
-
--- Decrease update time
-vim.o.updatetime = 250
+vim.o.updatetime = 250 -- Decrease update time
 vim.o.timeoutlen = 300
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
+vim.o.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
+vim.o.termguicolors = true -- NOTE: You should make sure your terminal supports this
 
 -- [[ Basic Keymaps ]]
+--
+-- Imported keymaps (from old configuration)
+vim.keymap.set("n", "<leader>ed", vim.cmd.Ex) -- While in normal mode, if I press leader pv, exec the following. ed = escape dir
+vim.keymap.set("n", "<leader>..", vim.cmd.bnext) -- While in normal mode, if I press leader pv, exec the following. ed = escape dir
+vim.keymap.set("n", "<leader>,,", vim.cmd.bprev) -- While in normal mode, if I press leader pv, exec the following. ed = escape dir
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
