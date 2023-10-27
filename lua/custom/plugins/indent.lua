@@ -1,6 +1,5 @@
 return {
-"lukas-reineke/indent-blankline",
-  version = "*",
+  'lukas-reineke/indent-blankline.nvim',
   config = function ()
     local highlight = {
         "CursorColumn",
