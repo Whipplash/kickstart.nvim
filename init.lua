@@ -152,15 +152,20 @@ require('lazy').setup({
     },
   },
 
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
-
+--  {
+--    -- Theme inspired by Atom
+--    'navarasu/onedark.nvim',
+--    priority = 1000,
+--    config = function()
+--      vim.cmd.colorscheme 'onedark'
+--    end,
+--  },
+{
+  "loctvl842/monokai-pro.nvim",
+  config = function()
+      vim.cmd.colorscheme 'monokai-pro'
+  end
+},
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -181,7 +186,7 @@ require('lazy').setup({
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
+    tag = '0.1.4',
     dependencies = {
       'nvim-lua/plenary.nvim',
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -281,6 +286,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+local builtin = require('telescope.builtin')
 require('telescope').setup {
   defaults = {
     mappings = {
@@ -289,7 +295,18 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+
+    layout_config = {
+      vertical = { width = 0.5 }
+      -- other layout configuration here
+    },
   },
+  vim.keymap.set('n', '<leader>ff', builtin.find_files, {}),
+  vim.keymap.set('n', '<leader>fg', function()
+    builtin.grep_string({ search = vim.fn.input("Grep > ") }); -- Snagged from thePrimagen, but it's useful for searching for text mentions across many files. REQUIRES RIPGREP TO BE INSTALLED.
+  end),
+  vim.keymap.set('n', '<leader>fb', builtin.buffers, {}),
+  vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 }
 
 -- Enable telescope fzf native, if installed
