@@ -161,9 +161,9 @@ require('lazy').setup({
 --    end,
 --  },
 {
-  "loctvl842/monokai-pro.nvim",
+  "polirritmico/monokai-nightasty.nvim",
   config = function()
-      vim.cmd.colorscheme 'monokai-pro'
+      vim.cmd.colorscheme 'monokai-nightasty'
   end
 },
   {
@@ -173,7 +173,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'moonfly',
         component_separators = '|',
         section_separators = '',
       },
