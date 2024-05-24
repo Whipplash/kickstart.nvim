@@ -264,6 +264,9 @@ vim.o.termguicolors = true -- NOTE: You should make sure your terminal supports 
 vim.keymap.set("n", "<leader>ed", vim.cmd.Ex) -- While in normal mode, if I press leader pv, exec the following. ed = escape dir
 vim.keymap.set("n", "<leader>..", vim.cmd.bnext) -- While in normal mode, if I press leader pv, exec the following. ed = escape dir
 vim.keymap.set("n", "<leader>,,", vim.cmd.bprev) -- While in normal mode, if I press leader pv, exec the following. ed = escape dir
+vim.keymap.set("n", "<leader>af", function ()
+  vim.cmd("!ansible-lint --fix %")
+end)
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -445,10 +448,10 @@ local on_attach = function(_, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
-  -- Create a command `:Format` local to the LSP buffer
---   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
---     vim.lsp.buf.format()
---   end, { desc = 'Format current buffer with LSP' })
+-- Create a command `:Format` local to the LSP buffer
+   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+     vim.lsp.buf.format()
+   end, { desc = 'Format current buffer with LSP' })
 end
 
 -- document existing key chains
