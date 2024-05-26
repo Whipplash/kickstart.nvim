@@ -112,7 +112,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -152,20 +152,6 @@ require('lazy').setup({
     },
   },
 
---  {
---    -- Theme inspired by Atom
---    'navarasu/onedark.nvim',
---    priority = 1000,
---    config = function()
---      vim.cmd.colorscheme 'onedark'
---    end,
---  },
-{
-  "polirritmico/monokai-nightasty.nvim",
-  config = function()
-      vim.cmd.colorscheme 'monokai-nightasty'
-  end
-},
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -212,7 +198,7 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
-  {'xiyaowong/transparent.nvim'},
+  { 'xiyaowong/transparent.nvim' },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -232,8 +218,8 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
-vim.o.hlsearch = false -- Set highlight on search
-vim.wo.number = true -- Make line numbers default
+vim.o.hlsearch = false      -- Set highlight on search
+vim.wo.number = true        -- Make line numbers default
 vim.o.relativenumber = true -- Relative line numbering
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
@@ -247,24 +233,24 @@ vim.o.foldlevelstart = 20
 vim.o.guicursor = ''
 vim.o.scrolloff = 10
 vim.o.colorcolumn = '120'
-vim.wo.signcolumn = 'yes' -- Keep signcolumn on by default
+vim.wo.signcolumn = 'yes'              -- Keep signcolumn on by default
 vim.o.wrap = false
-vim.o.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
-vim.o.undofile = true -- Save undo history
-vim.o.ignorecase = true -- Case-insensitive searching UNLESS \C or capital in search
+vim.o.clipboard = 'unnamedplus'        -- Sync clipboard between OS and Neovim.
+vim.o.undofile = true                  -- Save undo history
+vim.o.ignorecase = true                -- Case-insensitive searching UNLESS \C or capital in search
 vim.o.smartcase = true
-vim.o.updatetime = 250 -- Decrease update time
+vim.o.updatetime = 250                 -- Decrease update time
 vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
-vim.o.termguicolors = true -- NOTE: You should make sure your terminal supports this
+vim.o.termguicolors = true             -- NOTE: You should make sure your terminal supports this
 
 -- [[ Basic Keymaps ]]
 --
 -- Imported keymaps (from old configuration)
-vim.keymap.set("n", "<leader>ed", vim.cmd.Ex) -- While in normal mode, if I press leader pv, exec the following. ed = escape dir
+vim.keymap.set("n", "<leader>ed", vim.cmd.Ex)    -- While in normal mode, if I press leader pv, exec the following. ed = escape dir
 vim.keymap.set("n", "<leader>..", vim.cmd.bnext) -- While in normal mode, if I press leader pv, exec the following. ed = escape dir
 vim.keymap.set("n", "<leader>,,", vim.cmd.bprev) -- While in normal mode, if I press leader pv, exec the following. ed = escape dir
-vim.keymap.set("n", "<leader>af", function ()
+vim.keymap.set("n", "<leader>af", function()
   vim.cmd("!ansible-lint --fix %")
 end)
 
@@ -448,10 +434,10 @@ local on_attach = function(_, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
--- Create a command `:Format` local to the LSP buffer
-   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-     vim.lsp.buf.format()
-   end, { desc = 'Format current buffer with LSP' })
+  -- Create a command `:Format` local to the LSP buffer
+  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+    vim.lsp.buf.format()
+  end, { desc = 'Format current buffer with LSP' })
 end
 
 -- document existing key chains
